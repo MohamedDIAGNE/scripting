@@ -1,0 +1,16 @@
+---
+
+- hosts: user
+  become: true
+  remote_user: user
+
+  tasks:
+
+  - name: Update template LXC
+    copy:
+      dest: /etc/lxc/default.conf
+      content: |
+        lxc.net.0.type = veth
+        lxc.net.0.link = brODO
+        lxc.net.0.flags = up
+        lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx

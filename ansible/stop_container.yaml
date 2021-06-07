@@ -1,0 +1,13 @@
+---
+
+- hosts: user
+  become: true
+  remote_user: user
+
+  tasks:
+     - name: Transfer the script
+       copy: src=/home/user/stop_container.sh dest=/home/user/ansible mode=0777
+
+     - name: Execute the script
+       shell:
+         cmd: ./ansible/stop_container.sh cnt10

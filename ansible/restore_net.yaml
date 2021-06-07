@@ -1,0 +1,11 @@
+---
+
+- hosts: user
+  become: true
+  remote_user: user
+  tasks:
+  - name: destruction du bridge
+    shell:
+      cmd: |
+        ip link set dev brODO down
+        ip link delete dev brODO

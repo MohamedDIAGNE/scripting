@@ -1,0 +1,12 @@
+---
+
+- hosts: user
+  become: true
+  remote_user: user
+  tasks:
+  - name: création du bridge
+    shell:
+      cmd: |
+        ip link add name brODO type bridge
+        ip addr add 192.168.10.1/24 dev brODO
+        ip link set dev brODO up

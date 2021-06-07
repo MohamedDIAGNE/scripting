@@ -1,0 +1,20 @@
+# Unison preferences file
+#ignore = Path {}
+# En premier le chemin du dossier local à synchroniser
+root = /home/ubuntu/source/
+# Ensuite le chemin du dossier distant 
+root = ssh://ubuntu@192.168.10.2//home/ubuntu/destination/
+
+# Options du journal
+log = true
+logfile = /home/ubuntu/.unison/log
+
+# Synchroniser selon les dates de fichier
+prefer=newer
+times = true
+
+# Utiliser le mode silencieux
+silent=true
+
+# Ignorer les permissions
+perms = 0

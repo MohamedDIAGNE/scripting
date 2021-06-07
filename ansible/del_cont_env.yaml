@@ -1,0 +1,26 @@
+---
+
+- hosts: user
+  become: true
+  remote_user: user
+
+  tasks:
+  - name: delete lxc-module ansible
+    apt:
+      name: python3-lxc
+      state: absent
+  - name : delete env container LXC
+    apt:
+      pkg:
+        - lxc
+        - lxc-utils
+        - lxc-templates
+        - lxctl
+      state: absent
+  - name : delete env network
+    apt:
+      pkg:
+      - openvswitch-common
+      - openvswitch-switch
+      - figlet
+      state: absent

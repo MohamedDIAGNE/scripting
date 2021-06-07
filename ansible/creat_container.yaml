@@ -1,0 +1,24 @@
+---
+
+- hosts: user
+  become: true
+  remote_user: user
+
+  tasks:
+
+  - name: Create a started container
+    lxc_container:
+      name: cnt10
+      container_log: true
+      template: ubuntu
+      state: started
+      template_options: --release trusty
+      container_config:
+        - "lxc.net.0.ipv4.address = 192.168.10.10/24"
+        - "lxc.net.0.veth.pair = cnt10-brODO"
+        - "lxc.net.0.ipv4.gateway = 192.168.10.1"
+        - "lxc.cgroup.cpuset.cpus = 0"
+        - "lxc.cgroup.memory.limit_in_bytes = 256000000"
+  - name: configure DNS
+       shell:
+         cmd: lxc-attach -n cnt10 echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
